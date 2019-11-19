@@ -1,0 +1,81 @@
+import com.commercehub.gradle.plugin.avro.GenerateAvroProtocolTask
+import com.commercehub.gradle.plugin.avro.GenerateAvroSchemaTask
+import com.commercehub.gradle.plugin.avro.GenerateAvroJavaTask
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.17.0"
+    }
+}
+
+plugins {
+    id 'java'
+}
+
+group 'com.lina'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url "http://packages.confluent.io/maven/" }
+}
+
+
+
+dependencies {
+    //I added spring here, because it gives me easy to use ClassPathResource.class
+    //which I use to read avro schema from resources folder, but you can omit it
+    //and use standard java api for reading files.
+    compile 'org.springframework:spring-core:5.0.8.RELEASE'
+    compile 'io.confluent:kafka-avro-serializer:5.2.2'
+    testCompile 'junit:junit:4.12'
+    // https://mvnrepository.com/artifact/org.apache.avro/avro
+    compile group: 'org.apache.avro', name: 'avro', version: '1.9.1'
+    // https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients
+    compile group: 'org.apache.kafka', name: 'kafka-clients', version: '2.3.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.12.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.12.1'
+
+}
+
+//apply plugin: "com.commercehub.gradle.plugin.avro"
+//apply plugin: "com.commercehub.gradle.plugin.avro-base"
+
+/*avro {
+    createSetters = true
+    fieldVisibility = 'private'
+    enableDecimalLogicalType = true
+    dateTimeLogicalType = 'JSR310'
+}*/
+//task("generateProtocol", type: GenerateAvroProtocolTask) {
+//    source file("src/main/avro")
+//    include("**/*.avdl")
+//    outputDir = file("build/generated-main-avro-avpr")
+//}
+//
+//task("generateSchema", type: GenerateAvroSchemaTask) {
+//    dependsOn generateProtocol
+//    source file("src/main/avro")
+//    source file("build/generated-main-avro-avpr")
+//    include("**/*.avpr")
+//    outputDir = file("build/generated-main-avro-avsc")
+//}
+
+task ("generateAvro", type: GenerateAvroJavaTask) {
+    createSetters = true
+    fieldVisibility = 'private'
+    stringType = "String"
+    enableDecimalLogicalType = true
+    dateTimeLogicalType = 'JSR310'
+    source("src/main/avro")
+    outputDir = file("src/main/java")
+}
+compileJava.source(generateAvro.outputs)
+

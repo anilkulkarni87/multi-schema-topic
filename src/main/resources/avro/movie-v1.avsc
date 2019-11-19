@@ -1,0 +1,10 @@
+{
+      "type": "record",
+      "namespace": "com.lina",
+      "name": "Movie",
+      "version": "1",
+      "fields": [
+        { "name": "movie_name", "type": "string", "doc": "Name of Movie" },
+        { "name": "genre", "type": "string", "doc": "Genre of Movie" }
+      ]
+ }

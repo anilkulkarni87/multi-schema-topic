@@ -1,0 +1,11 @@
+{
+      "type": "record",
+      "namespace": "com.lina",
+      "name": "Employee",
+      "version": "1",
+      "fields": [
+        { "name": "name", "type": "string", "doc": "Name of Employee" },
+        { "name": "age", "type": "int", "doc": "Age of Employee" },
+        { "name": "title", "type": "string", "doc": "Title of Employee" }
+      ]
+ }
