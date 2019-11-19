@@ -1,7 +1,7 @@
 ### Publish multiple avro schemas to same Kafka Topic
 <p>
 <a>
-<img alt="GitHub last commit (branch)" src="https://img.shields.io/github/last-commit/anilkulkarni87/spark-apps/master">
+<img alt="GitHub last commit (branch)" src="https://img.shields.io/github/last-commit/anilkulkarni87/multi-schema-topic/master">
 </a>
   <a href="https://twitter.com/anilkulkarni" target="_blank">
     <img alt="Twitter: anilkulkarni" src="https://img.shields.io/twitter/follow/anilkulkarni.svg?style=social" />
