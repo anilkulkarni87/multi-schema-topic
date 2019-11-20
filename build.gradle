@@ -13,6 +13,7 @@ buildscript {
 
 plugins {
     id 'java'
+    id 'net.nemerosa.versioning' version '2.8.2'
     id("maven-publish")
 }
 
@@ -35,7 +36,7 @@ publishing {
 }
 
 group 'com.lina'
-version '1.0-SNAPSHOT'
+version versioning.info.full
 
 sourceCompatibility = 1.8
 
